@@ -1,0 +1,324 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    transition: background-color 400ms ease-out, border-color 400ms ease-out, color 400ms ease-out;
+  }
+  .fx_list {
+    color: white;
+  }
+  @font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto-Thin.ttf');
+  }
+  html, body {
+    display: block;
+    height: 100%;
+  }
+  body {
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    padding-left: 40px;
+    margin: 0px;
+    background-image: url("../images/background6.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* for sortable list */
+    overflow: hidden;
+    overflow-y: scroll;
+    font-family: Arial, sans-serif;
+    /* background: #fcfff4;
+    background: radial-gradient(ellipse at center, #fcfff4 0%, #dfe5d7 50%, #b3bead 100%); */
+  }
+  .box {
+    border-radius: 10px;
+    color: #fff;
+    margin-left: 20px;
+    margin-top: 130px;
+    margin-bottom: 0px;
+    padding: 20px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 15px 15px 15px 1px rgba(0, 0, 0, 0.9);
+  }
+  .select-item {
+    margin: 5px;
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    outline-color: #8322c3;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+  .select-item:hover {
+    background-color: rgba(34, 104, 195, 0.3);
+    outline: solid 1px;
+    outline-color: #226dc3;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .select-marker, .select-marker2 {
+    width: 90px;
+    height: 90px;
+  }
+  .active {
+    border-radius: 5px;
+    outline: solid 1px !important;
+    outline-color: #6161ff !important;
+    background-color: rgba(17, 0, 255, 0.3);
+    box-shadow: 0px 0px 15px 5px #3700ff, inset 0px 0px 15px 5px #3700ff;
+    color: #fff !important;
+  }
+  .active:hover {
+    border-radius: 5px;
+    outline: solid 5px !important;
+    outline-color: #6161ff !important;
+    background-color: rgba(17, 0, 255, 0.6);
+  }
+  .center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .center-list {
+    display: flex;
+    justify-content: center;
+  }
+  h3 {
+    width: 100%;
+    border-radius: 10px;
+    font-size: xx-large !important;
+    font-family: 'Roboto' !important;
+    font-weight: lighter !important;
+    box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .headline {
+    color: #70f;
+    text-align: center;
+    font-size: 5rem !important;
+    font-family: 'Roboto' !important;
+    text-shadow: 10px 10px 5px black;
+  }
+  .no-select {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  }
+  #logo {
+    width: 550px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  #clearCanvas {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    bottom: 25px;
+    margin: 0%;
+    font-size: xx-large !important;
+    font-family: 'Roboto' !important;
+    height: 90px;
+    width: 90px;
+    background-image: url("../images/clear90px_white.png");
+    /* border-radius: 10px; 
+     transition: all 0.3s;
+     outline: solid 1px !important;
+     outline-color: #6464a8 !important; */
+  }
+  #clearCanvas:hover {
+    border-radius: 5px;
+    outline: solid 1px !important;
+    cursor: pointer;
+    box-shadow: 10px 10px 10px 2px rgba(0, 0, 0, 0.6);
+    outline-color: #6161ff !important;
+    background-color: rgba(17, 0, 255, 0.3);
+    box-shadow: 0px 0px 20px 5px #3700ff, inset 0px 0px 15px 5px #3700ff;
+  }
+  #clearCanvas.activeButton {
+    border-radius: 5px;
+    cursor: pointer;
+    /* outline-color: #ff7d56 !important;
+     outline: solid 1px !important;
+     background-color: rgba(255, 0, 0, 0.2);
+     box-shadow: 0px 0px 15px 4px rgba(255, 0, 0, 0.9), inset 0px 0px 15px 5px rgba(255, 0, 0, 0.9); */
+    background-image: url("../images/clear_x90px_white.png");
+  }
+  #clearCanvas.activeButton:hover {
+    border-radius: 5px;
+    outline: solid 1px !important;
+    cursor: pointer;
+    outline-color: #ff8762 !important;
+    background-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px 4px #f00, inset 0px 0px 15px 5px #f00;
+  }
+  /* Background Images:----------------------------- */
+  #bell {
+    background-image: url("../images/bell.png");
+  }
+  #bass {
+    background-image: url("../images/bass.png");
+  }
+  #guitar {
+    background-image: url("../images/guitarChill.png");
+  }
+  #key {
+    background-image: url("../images/klavier.png");
+  }
+  #pad {
+    background-image: url("../images/cloud.png");
+  }
+  #pluck {
+    background-image: url("../images/synthesizer2.png");
+  }
+  #string {
+    background-image: url("../images/violin.png");
+  }
+  #synth {
+    background-image: url("../images/synthesizer.png");
+  }
+  /* SONGS------------------ */
+  #midi_ente {
+    background-image: url("../images/ente.png");
+  }
+  #midi_mario {
+    background-image: url("../images/mario.png");
+  }
+  #midi_axel {
+    background-image: url("../images/police.png");
+  }
+  #midi_addams {
+    background-image: url("../images/frankenstein.png");
+  }
+  /* MARKER ------------------- */
+  #marker_green, #marker2_green {
+    background-image: url("../images/textmarker_gruen.png");
+  }
+  #marker_red, #marker2_red {
+    background-image: url("../images/textmarker_rot.png");
+  }
+  #marker_yellow, #marker2_yellow {
+    background-image: url("../images/textmarker_gelb.png");
+  }
+  #marker_blue, #marker2_blue {
+    background-image: url("../images/textmarker_blau.png");
+  }
+  #marker_detect, #marker_detect2 {
+    background-image: url("../images/textmarker_detect.png");
+  }
+  /* Die Lautsprecher in den Ecken des Spielebildschirms */
+  .box-img {
+    display: block;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-image: url("../images/speaker.png");
+    background-size: cover;
+    transform: rotate(0deg);
+  }
+  .box-img.box-right {
+    bottom: 10px;
+    right: 10px;
+  }
+  .box-img.box-left {
+    bottom: 10px;
+    left: 10px;
+  }
+  .box-img.box-right-top {
+    top: 10px;
+    right: 10px;
+  }
+  .box-img.box-left-top {
+    top: 10px;
+    left: 10px;
+  }
+  .synthbtn {
+    cursor: pointer;
+    border: 1px solid #226dc3;
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    /* color: #3498db; */
+    font-size: 1.5em;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    transition: all 0.3s;
+    color: gainsboro;
+    margin: 5px;
+  }
+  .synthbtn:hover {
+    border: 1px solid #6161ff;
+    color: white;
+    background-color: rgba(17, 0, 255, 0.4);
+  }
+  /* for sortable FX list */
+  .fx_list {
+    color: white;
+    font-weight: bolder;
+    list-style: none;
+    float: left;
+    
+  }
+  /* .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .container div {
+    flex-basis: 40%;
+  }
+  .container div h3 {
+    font-weight: bold;
+    font-size: 150%;
+    line-height: 1em;
+  } */
+  ul.sortable {
+    display: block;
+    list-style: none;
+    background: black;
+    border-radius: 4px;
+    box-shadow: 0 0 40px rgba(247, 247, 247, 0.786);
+    padding: 5px;
+    margin: 0px 0px 20px 50px;
+    /* width: 50%; */
+    
+  }
+  ul.sortable > li {
+    display: block;
+    margin: 1px;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: move;
+    background: black;
+  }
+  ul.sortable > li:hover {
+    background: #131313;
+  }
+  ul.sortable > li.active {
+    background: rgb(68, 68, 68);
+  }
+  ul.sortable > li.dragging {
+    background: #e0ffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0.5;
+  }
+  #colorspaceList {
+    display: none;
+  }

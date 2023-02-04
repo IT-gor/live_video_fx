@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/style_dark.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>OFFICE HERO</title>
+</head>
+
+<body>
+    <!-- <h1 class="headline no-select">OfficeHero</h1> -->
+
+    <div class="row">
+        <div class="col-12"><div id="logo" class="center"></div></div>
+        
+        <div id="FXCointainer" class="col-4 box mt-0">
+        
+
+            <div class="center m-2">
+                <h3 class="no-select">Choose Your Marker (User 1)</h3>
+            </div>
+            <div class="row center-list">
+                <div class="select-marker select-item" midi="[177, 10, 1]" id="marker_yellow" value="textmarker_gelb"></div>
+                <div class="select-marker select-item" midi="[177, 10, 2]" id="marker_red" value="textmarker_rot"></div>
+                <div class="select-marker select-item" midi="[177, 10, 3]" id="marker_blue" value="textmarker_blau"></div>
+                <div class="select-marker select-item" midi="[177, 10, 4]" id="marker_green" value="textmarker_gruen"></div>
+                <div class="select-marker select-item" midi="[177, 10, 11]" id="marker_detect" value="textmarker_detect"></div>
+
+            </div>
+
+            <div class="center m-2">
+                <h3 class="no-select">Choose Your Marker (User 2)</h3>
+            </div>
+            <div class="row center-list">
+                <div class="select-marker2 select-item" midi="[177, 10, 1]" id="marker2_yellow" value="textmarker2_gelb"></div>
+                <div class="select-marker2 select-item" midi="[177, 10, 2]" id="marker2_red" value="textmarker2_rot"></div>
+                <div class="select-marker2 select-item" midi="[177, 10, 3]" id="marker2_blue" value="textmarker2_blau"></div>
+                <div class="select-marker2 select-item" midi="[177, 10, 4]" id="marker2_green" value="textmarker2_gruen"></div>
+                <div class="select-marker2 select-item" midi="[177, 10, 12]" id="marker_detect" value="textmarker2_detect"></div>
+            </div>
+            <div class="center m-2">
+                <h3 class="no-select">Synthesizer Settings</h3>
+            </div>
+            
+            <div class="row">
+                <div class="col" style="text-align: center;">
+                    
+                <button id="button1" class="synthbtn">1</button>
+                <button id="button2" class="synthbtn">2</button>
+                <button id="button3" class="synthbtn">3</button>
+                <button id="button4" class="synthbtn">4</button>
+            
+                </div>
+                </div>
+                
+            <div class="row">
+                <div class="col" style="text-align: center;">
+
+                <div id="attackContainer"> Attack
+                    <input type="range" min="0" max="100" value="10" class="slider" id="attackSlider">
+                    <span id="attackOutput" class="output">0.1 sec</span>
+                </div>
+            
+                <div id="releaseContainer"> Release
+                    <input type="range" min="0" max="100" value="10" class="slider" id="releaseSlider">
+                    <span id="releaseOutput" class="output">0.1 sec</span>
+                </div>
+            
+                <div id="lfoContainer"> LFO
+                    <input type="range" min="0" max="100" value="6" class="slider" id="lfoSlider">
+                    <span id="lfoOutput" class="output">6 Hz</span>
+                </div>
+            
+                <div id="attackContainer">Attack
+                    <input type="range" min="0" max="100" value="10" class="slider" id="attackSlider">
+                    <span id="attackOutput" class="output">0.1</span>
+                </div>
+            
+                 <div id="releaseContainer">Release
+                    <input type="range" min="0" max="100" value="10" class="slider" id="releaseSlider">
+                    <span id="releaseOutput" class="output">0.1</span>
+                </div>
+                
+                <!-- Distortion Controls-->
+                <div id="distortionContainer">Distortion Curve
+                    <input type="range" min="0" max="100" value="6" class="slider" id="distortionSlider">
+                    <span id="distortionOutput" class="output">6</span>
+                </div>
+            </div>
+                <div class="col" style="text-align: center;">
+            
+            
+                <!-- Filter Controls-->
+                <div id="frequencyContainer">Frequency
+                    <input type="range" min="20" max="20000" value="1000" class="slider" id="frequencySlider">
+                    <span id="frequencyOutput" class="output">1000 Hz</span>
+                </div>
+            
+                <div id="detuneContainer">Detune
+                    <input type="range" min="0" max="100" value="0" class="slider" id="detuneSlider">
+                    <span id="detuneOutput" class="output">0 cents</span>
+                </div>
+            
+                <div id="qContainer">Quality
+                    <input type="range" min="0" max="100" value="0" class="slider" id="qSlider">
+                    <span id="qOutput" class="output">0</span>
+                </div>
+            
+                <div id="gainContainer">Gain
+                    <input type="range" min="-40" max="40" value="0" class="slider" id="gainSlider">
+                    <span id="gainOutput" class="output">0 dB</span>
+                </div>
+            
+                <div id="typeContainer">Filter Type
+                    <select id="filterSelectList">
+                        <option value="lowpass">Lowpass</option>
+                        <option value="highpass">Highpass</option>
+                        <option value="bandpass">Bandpass</option>
+                        <option value="allpass">Allpass</option>
+                        <option value="lowshelf">lowshelf</option>
+                        <option value="highshelf">highshelf</option>
+                        <option value="peaking">Peaking</option>
+                        <option value="notch">Notch</option>
+                    </select>
+                </div>
+            
+                <!-- Reverb Controls-->
+                <div id="reverbContainer">Reverb Type
+                    <select id="convolverSelectList">
+                        <option value="cave">Cave</option>
+                        <option value="church">Church</option>
+                        <option value="garage">Garage</option>
+                        <option value="room">Room</option>
+                    </select>
+                </div>
+
+
+
+        </div>
+    </div>
+    
+    <div class="center m-2">
+        <h3 class="no-select">Turn on / off / order FX</h3>
+    </div>
+    <div class="row center-list">
+                <ul id="list-fx" class="fx_list">
+                <fieldset class="checkboxgroup">
+                    <li><label><input type="checkbox" id="checkbox0" value=0> optical flow arrows</li>
+                        <li><label><input type="checkbox" id="checkbox1" value=1> optical flow hsv</li>
+                        <li><label><input type="checkbox" id="checkbox2" value=2> optical flow warp  </li>
+                        <li><label><input type="checkbox" id="checkbox3" value=3> charcoal </li>
+                        <li><label><input type="checkbox" id="checkbox4" value=4> shade </li>
+                        <li><label><input type="checkbox" id="checkbox5" value=5> spread </li>
+                        <li><label><input type="checkbox" id="checkbox6" value=6> emboss </li>
+                        <li><label><input type="checkbox" id="checkbox7" value=7> edge </li>
+                        <li><label><input type="checkbox" id="checkbox8" value=8> blur</li>
+                        <li><label><input type="checkbox" id="checkbox9" value=9> motion blur</li>
+                        <li><label><input type="checkbox" id="checkbox10" value=10> colorspace</li>
+                        <li><label><input type="checkbox" id="checkbox11" value=11> board drawer</li>
+                            <li><label><input type="checkbox" id="checkbox12" value=12> office hero</li>
+                            <li id="colorspaceList">Colorspace: 
+                                <select id="colorspaceSelect">
+                                <option value=0 selected="selected">bilevel</option>
+                                <option value=1>grayscale</option>
+                                <option value=2>palette</option>
+                                <option value=3>truecolor</option>
+                                <option value=4>colorseparation</option>
+                                <option value=5>optimize</option>
+                            </select></li>
+                <li><button id="btn-update" type="button">Update Settings</button></li>
+                </fieldset>
+                </ul>
+                <div>
+                   <ul id="list-sortfx" class="sortable fx_list">
+                    <li id="item-0" value=0>optical flow arrows</li>
+                    <li id="item-1" value=1>optical flow hsv</li>
+                    <li id="item-2" value=2>optical flow warp  </li>
+                    <li id="item-3" value=3>charcoal </li>
+                    <li id="item-4" value=4>shade </li>
+                    <li id="item-5" value=5>spread </li>
+                    <li id="item-6" value=6>emboss </li>
+                    <li id="item-7" value=7>edge </li>
+                    <li id="item-8" value=8>blur</li>
+                    <li id="item-9" value=9>motion blur</li>
+                    <li id="item-10" value=10>colorspace</li>
+                    <li id="item-11" value=11>board drawer</li>
+                    <li id="item-12" value=12>office hero</li>
+                    <button id="button-order" type="button">Update Order</button>
+                </ul>
+            </div>
+            </div>
+        <div class="center m-2">
+            <h3>Execution time</h3>
+            <p>Time: <span id="execution-time"></span> centiseconds</p>
+            <p>Min: <span id="execution-min"></span> centiseconds</p>
+            <p>Max: <span id="execution-max"></span> centiseconds</p>
+            <p>Avg: <span id="execution-avg"></span> centiseconds</p>
+        </div>
+    </div>
+
+        <div class="col-7 box center mt-0" style="min-height: 770px;">
+            <h3 class="no-select col-8 offset-2 mt-2">Place The Screen Below:</h3>
+            <div class="box-img box-left"></div>
+            <div class="box-img box-right"></div>
+            <div class="box-img box-left-top"></div>
+            <div class="box-img box-right-top"></div>
+            <div id="clearCanvas" class="no-select"></div>
+        </div>
+        
+    <!-- <div onload="initialize()">
+            MIDI Input: <select id="inputportselector"></select>
+            <button type="button" id="connectbutton">Öffnen</button><br>
+            incoming message: <span id="label">undefined</span>
+    </div> -->
+
+
+    <script src="js/timeit.js"></script>
+    <script src="js/sortablelist.js" type="application/javascript"></script>
+    <script src="js/synth.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/midi.js"></script>
+    <script src="js/distortion.js"></script>
+    <script src="js/convolver.js"></script>
+    <script src="js/init.js"></script>
+
+</body>
+
+</html>
