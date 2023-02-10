@@ -10,6 +10,36 @@ let clearCanvas2 = document.getElementById("clearCanvas");
 WIDTH = 640;
 HEIGHT = 320;
 
+//Gibt den Output zurück
+function getOutput(){
+    return this.output;
+}
+
+if (navigator.requestMIDIAccess) {
+    navigator.requestMIDIAccess({sysex: true}).then(function (midiAccess) {
+        midi = midiAccess;
+        var inputs = midi.inputs.values();
+
+        // Output festlegen!
+        // output = midiAccess.outputs.get('output-1');
+        output = midiAccess.outputs.get('6FF5590044F4859ED50C5167BCFE9700A1798E39AA55A628E86D39011FAECD5D');
+
+        // Inputs und Outputs ausgeben:
+        listInputsAndOutputs( midiAccess );
+
+        // loop through all inputs
+        for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+            // listen for midi messages
+            input.value.onmidimessage = onMIDIMessage;
+        }
+
+
+    });
+} else {
+    alert("No MIDI support in your browser.");
+}
+
+
 function onMIDIMessage(event) {
     
     // event.data is an array

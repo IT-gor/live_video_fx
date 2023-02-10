@@ -66,9 +66,9 @@ prevMarker2Pos = []
 # 9 = motion blur
 # 10 = colorspace
 # 11 = Board drawer
-# 12 = office hero
+# 12 = office hero  # nicht implementiert
 # list has: order no and bool = no. of order of effect in effect chain, bool = on/off
-FXlist = [-1 for i in range(13)]
+FXlist = [-1 for i in range(12)]
 
 colorspaceList = ['bilevel','grayscale','palette','truecolor','colorseparation','optimize']
 colorSpace = 'grayscale'
@@ -92,7 +92,6 @@ marker_area_right_bottom = -1  # (x,y)
 # ig: zweiter Marker
 marker2_area_left_top = -1  # (x,y)
 marker2_area_right_bottom = -1  # (x,y)
-
 
 # init (HSV) Farbwerte für Gelb
 l_h, u_h = 25, 42
@@ -205,7 +204,6 @@ def playScreen():
                         frame = detectColor(frame) if detect_color else detectColor(frame, False)
                     else:
                         frame = detectMarker(frame)
-                        # print("detectMarker time: ", timeit.default_timer() - start_time)
                         if u2_h != -1:  # detectMarker2 wenn zweiter Marker aktiviert wurde (aktuell durch detect_marker2)
                             frame = detectMarker(frame, False)
                 
@@ -390,8 +388,6 @@ def sendScreenPosFreq(gotX, gotY):
     global WIDTH
     """ sendet die Position x mit Midi an JS
     """
-    # send freq via midi outport
-    # print("sendScreenPosFreq x: ", x)
     
     # IG: sende nur x Position und berechne die Frequenz in JS!
     if gotY >= 0:  # sende X Position nur, falls Marker erkann wurde [also gotY nicht -1 oder -2 ist]
@@ -422,7 +418,6 @@ def paintCanvas(image, marker_pos, first_marker = True):
         paint_canvas[min_y:max_y, min_x:max_x] = color_canvas # ig: Farbwert ermitteln
         alpha_canvas[min_y:max_y, min_x:max_x] = (155, 155, 155)
         if empty_canvas:  # sende Nachricht an JS per Midi, dass das Canvas nicht mehr leer ist (wieder resettet werden kann)
-            # print("empty_canvas True")
             msg = mido.Message('note_on', note=50)  # die note ist nur ein dummy Wert
             outport.send(msg)
         empty_canvas = False
@@ -447,7 +442,6 @@ def colorFx(frame, gotX, gotY):
     # define range of blue color in HSV
 
     hue_val=int((gotX/WIDTH)*180)
-    # print("hue_val: ", hue_val)
     # upper_blue = np.array([130,255,255])
     upper_blue = np.array([hue_val+20 if hue_val+20 < 179 else 179,255,255])
     # lower_blue = np.array([110,50,50])
@@ -506,7 +500,6 @@ def colorFx(frame, gotX, gotY):
     #    factor = ((x/WIDTH) - 0.5)*2
 
     factor = ((gotX/WIDTH) - 0.5)*2  # ig: test if works
-    # print("factor red / blue: ", factor)
     blended = cv2.addWeighted(src1=frame,alpha=1-factor,src2=res_blue,beta=factor,gamma=0)
     # if factor < 0:
     #     # factor = 1 - (gotX / (WIDTH / 2))
@@ -580,7 +573,6 @@ def detectColor(img, first_marker = True):
             marker_color = int(marker_color[0] * 255), int(marker_color[1] * 255), int(marker_color[2] * 255)
             # rgb to bgr --> reverse
             marker_color = tuple(reversed(marker_color))
-            print("marker_color: ", marker_color)
         else:
             l2_h, u2_h = minH-8 if minH-8 > 0 else 0, maxH+8 if maxH+8 < 180 else 180
             l2_s, u2_s = minS-25 if minS-25 > 0 else 0, maxS+25 if maxS+25 < 255 else 255
@@ -590,7 +582,6 @@ def detectColor(img, first_marker = True):
             marker2_color = int(marker2_color[0] * 255), int(marker2_color[1] * 255), int(marker2_color[2] * 255)
             # rgb to bgr --> reverse
             marker2_color = tuple(reversed(marker2_color))
-            print("marker2_color: ", marker2_color)
 
     return cv2.rectangle(img, (x1, y1), (x2, y2), (10, 200, 0), 2) if first_marker else cv2.rectangle(img, (x1, y1), (x2, y2), (0, 100, 255), 2)
 # Convert an integer to a MIDI byte array
@@ -600,7 +591,6 @@ def int_to_midi_bytes(value):
 # Example usage
 # value = 100
 # midi_bytes = int_to_midi_bytes(value)
-# print(midi_bytes)
 
 def listenOnChange():
     """ Prüft ob neue Midi Nachrichten (msg) eingetroffen sind sind und setzt die Variablenwerte entsprechend.
